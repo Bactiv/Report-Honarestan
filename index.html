@@ -13,6 +13,7 @@
             --primary-hover: #172554;
             --secondary: #0f766e;
             --secondary-hover: #115e59;
+            --accent: #d97706;
             --danger: #b91c1c;
             --text-main: #0f172a;
             --text-muted: #64748b;
@@ -34,7 +35,7 @@
             line-height: 1.7;
         }
 
-        /* استایل صفحه قفل امنیتی (Login Overlay) */
+        /* صفحه قفل امنیتی */
         #loginOverlay {
             position: fixed;
             inset: 0;
@@ -88,7 +89,7 @@
         }
 
         .header-banner {
-            max-width: 1280px;
+            max-width: 1320px;
             margin: 0 auto 20px auto;
             background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
             color: white;
@@ -133,7 +134,7 @@
         }
 
         .container {
-            max-width: 1280px;
+            max-width: 1320px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: 1.15fr 0.85fr;
@@ -226,8 +227,8 @@
             flex-shrink: 0;
         }
 
-        .btn-mic:active {
-            transform: scale(0.95);
+        .btn-mic:hover {
+            background-color: #e2e8f0;
         }
 
         .btn-mic.recording {
@@ -243,12 +244,37 @@
             100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
         }
 
+        /* نوار وضعیت تایپ صوتی */
+        #voiceStatusBanner {
+            display: none;
+            padding: 10px 14px;
+            border-radius: 10px;
+            margin-bottom: 16px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .voice-active {
+            background: #fef2f2;
+            color: #b91c1c;
+            border: 1px solid #fecaca;
+        }
+
+        .voice-error {
+            background: #fffbeb;
+            color: #92400e;
+            border: 1px solid #fde68a;
+        }
+
         .checkbox-wrapper {
             display: flex;
             align-items: center;
             gap: 8px;
             margin-top: 8px;
-            font-size: 0.85rem;
+            font-size: 0.83rem;
             color: var(--text-muted);
             cursor: pointer;
             user-select: none;
@@ -256,8 +282,8 @@
 
         .checkbox-wrapper input[type="checkbox"] {
             cursor: pointer;
-            width: 18px;
-            height: 18px;
+            width: 17px;
+            height: 17px;
             accent-color: var(--primary);
         }
 
@@ -271,13 +297,13 @@
         .tag {
             padding: 6px 12px;
             border-radius: 8px;
-            font-size: 0.84rem;
+            font-size: 0.83rem;
             font-weight: 600;
         }
 
-        .tag-major-net { background: #dbeafe; color: #1e40af; border: 1px solid #bfdbfe; }
-        .tag-major-acc { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
-        .tag-grade { background: #f1f5f9; color: #334155; border: 1px solid #cbd5e1; }
+        .tag-target { background: #dbeafe; color: #1e40af; border: 1px solid #bfdbfe; }
+        .tag-shared { background: #fae8ff; color: #86198f; border: 1px solid #f5d0fe; }
+        .tag-count { background: #f1f5f9; color: #334155; border: 1px solid #cbd5e1; }
 
         button.btn-main {
             cursor: pointer;
@@ -356,6 +382,20 @@
             flex-shrink: 0;
         }
 
+        .filter-box {
+            background: #eff6ff;
+            border: 2px solid #93c5fd;
+            padding: 14px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+        }
+
+        .filter-box label {
+            color: #1e3a8a;
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+        }
+
         .output-box {
             background: #f8fafc;
             color: #0f172a;
@@ -364,7 +404,7 @@
             white-space: pre-wrap;
             font-size: 0.92rem;
             min-height: 320px;
-            max-height: 520px;
+            max-height: 500px;
             overflow-y: auto;
             border: 1px solid #cbd5e1;
             font-family: 'Vazirmatn', 'Tahoma', sans-serif;
@@ -373,32 +413,37 @@
             line-height: 1.85;
         }
 
-        .saved-teachers-box {
-            margin-top: 18px;
-            padding-top: 14px;
+        .saved-items-box {
+            margin-top: 14px;
+            padding-top: 12px;
             border-top: 1px dashed var(--border-color);
-            font-size: 0.85rem;
+            font-size: 0.84rem;
             color: var(--text-muted);
         }
 
-        .teacher-chip {
+        .chip {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             background: #e2e8f0;
             color: #0f172a;
-            padding: 6px 12px;
+            padding: 5px 10px;
             border-radius: 8px;
-            margin: 4px;
-            font-size: 0.85rem;
+            margin: 3px;
+            font-size: 0.82rem;
         }
 
-        .teacher-chip span {
+        .chip-lesson {
+            background: #dbeafe;
+            color: #1e3a8a;
+        }
+
+        .chip span {
             cursor: pointer;
             color: #b91c1c;
             font-weight: bold;
-            font-size: 1.1rem;
-            padding: 0 4px;
+            font-size: 1rem;
+            padding: 0 3px;
         }
 
         .mobile-sticky-bar {
@@ -471,61 +516,73 @@
 </div>
 
 <div class="header-banner">
-    <h1>🏛️ سامانه گزارش هفتگی آموزشی هنرستان</h1>
+    <h1>🏛️ سامانه جامع گزارش هفتگی آموزشی هنرستان</h1>
     <div class="header-actions">
         <span id="todayJalaliDisplay">امروز: در حال محاسبه...</span>
-        <button type="button" class="btn-logout" onclick="logoutSystem()" title="قفل کردن سامانه">🔒 خروج</button>
+        <button type="button" class="btn-logout" onclick="logoutSystem()">🔒 قفل سامانه</button>
     </div>
 </div>
 
 <div class="container">
-    <!-- ستون اول: فرم ورود اطلاعات -->
+    <!-- ستون اول: ثبت اطلاعات و دروس -->
     <div class="card">
         <h2>
-            <span>📋 ثبت گزارش دروس کلاس</span>
-            <span id="savedStatus" style="font-size: 0.78rem; color: #0f766e; font-weight: normal;">✓ ذخیره خودکار فعال</span>
+            <span>📝 ثبت گزارش دروس (تکی یا مشترک)</span>
+            <span id="savedStatus" style="font-size: 0.78rem; color: #0f766e; font-weight: normal;">✓ همه تغییرات خودکار ذخیره می‌شوند</span>
         </h2>
+
+        <!-- بنر وضعیت تایپ صوتی -->
+        <div id="voiceStatusBanner">
+            <span id="voiceStatusText">🎙️ در حال گوش دادن... صحبت کنید</span>
+            <button type="button" onclick="stopVoiceManual()" style="background:#dc2626; color:white; border:none; border-radius:6px; padding:4px 10px; font-family:inherit; cursor:pointer; font-size:0.8rem;">توقف</button>
+        </div>
 
         <div class="row">
             <div class="form-group">
-                <label>انتخاب کلاس و پایه:</label>
-                <select id="classSelect" onchange="onClassChange()">
-                    <optgroup label="پایه دهم">
-                        <option value="401">کلاس ۴۰۱ - پایه دهم (شبکه و نرم‌افزار)</option>
-                        <option value="402">کلاس ۴۰۲ - پایه دهم (شبکه و نرم‌افزار)</option>
-                        <option value="403">کلاس ۴۰۳ - پایه دهم (حسابداری)</option>
-                        <option value="404">کلاس ۴۰۴ - پایه دهم (حسابداری)</option>
+                <label>۱. ثبت این درس برای کدام کلاس؟ (تکی یا مشترک):</label>
+                <select id="entryTargetSelect" onchange="onTargetChange()">
+                    <optgroup label="🔗 کلاس‌های مشترک (ثبت همزمان برای هر دو کلاس)">
+                        <option value="401-403">مشترک ۴۰۱ و ۴۰۳ (پایه دهم)</option>
+                        <option value="402-404">مشترک ۴۰۲ و ۴۰۴ (پایه دهم)</option>
+                        <option value="301-303">مشترک ۳۰۱ و ۳۰۳ (پایه یازدهم)</option>
+                        <option value="302-304">مشترک ۳۰۲ و ۳۰۴ (پایه یازدهم)</option>
+                        <option value="201-203">مشترک ۲۰۱ و ۲۰۳ (پایه دوازدهم)</option>
+                        <option value="202-204">مشترک ۲۰۲ و ۲۰۴ (پایه دوازدهم)</option>
                     </optgroup>
-                    <optgroup label="پایه یازدهم">
-                        <option value="301">کلاس ۳۰۱ - پایه یازدهم (شبکه و نرم‌افزار)</option>
-                        <option value="302">کلاس ۳۰۲ - پایه یازدهم (شبکه و نرم‌افزار)</option>
-                        <option value="303">کلاس ۳۰۳ - پایه یازدهم (حسابداری)</option>
-                        <option value="304">کلاس ۳۰۴ - پایه یازدهم (حسابداری)</option>
+                    <optgroup label="🏫 پایه دهم (تک کلاس)">
+                        <option value="401" selected>کلاس ۴۰۱ - دهم شبکه و نرم‌افزار</option>
+                        <option value="402">کلاس ۴۰۲ - دهم شبکه و نرم‌افزار</option>
+                        <option value="403">کلاس ۴۰۳ - دهم حسابداری</option>
+                        <option value="404">کلاس ۴۰۴ - دهم حسابداری</option>
                     </optgroup>
-                    <optgroup label="پایه دوازدهم">
-                        <option value="201">کلاس ۲۰۱ - پایه دوازدهم (شبکه و نرم‌افزار)</option>
-                        <option value="202">کلاس ۲۰۲ - پایه دوازدهم (شبکه و نرم‌افزار)</option>
-                        <option value="203">کلاس ۲۰۳ - پایه دوازدهم (حسابداری)</option>
-                        <option value="204">کلاس ۲۰۴ - پایه دوازدهم (حسابداری)</option>
+                    <optgroup label="🏫 پایه یازدهم (تک کلاس)">
+                        <option value="301">کلاس ۳۰۱ - یازدهم شبکه و نرم‌افزار</option>
+                        <option value="302">کلاس ۳۰۲ - یازدهم شبکه و نرم‌افزار</option>
+                        <option value="303">کلاس ۳۰۳ - یازدهم حسابداری</option>
+                        <option value="304">کلاس ۳۰۴ - یازدهم حسابداری</option>
+                    </optgroup>
+                    <optgroup label="🏫 پایه دوازدهم (تک کلاس)">
+                        <option value="201">کلاس ۲۰۱ - دوازدهم شبکه و نرم‌افزار</option>
+                        <option value="202">کلاس ۲۰۲ - دوازدهم شبکه و نرم‌افزار</option>
+                        <option value="203">کلاس ۲۰۳ - دوازدهم حسابداری</option>
+                        <option value="204">کلاس ۲۰۴ - دوازدهم حسابداری</option>
                     </optgroup>
                 </select>
             </div>
 
             <div class="form-group">
-                <label>انتخاب هوشمند هفته و بازه زمانی:</label>
+                <label>۲. انتخاب هوشمند هفته و بازه زمانی:</label>
                 <select id="weekSelect" onchange="onWeekSelectChange()"></select>
             </div>
         </div>
 
         <div class="form-group">
             <label>عنوان بازه زمانی در گزارش (قابل ویرایش دستی):</label>
-            <input type="text" id="customWeekText" oninput="saveCurrentState(); updatePreview();">
+            <input type="text" id="customWeekText" oninput="saveDraftAndState(); updatePreview();">
         </div>
 
         <div class="info-bar">
-            <span id="majorBadge" class="tag tag-major-net">رشته: شبکه و نرم‌افزار رایانه</span>
-            <span id="gradeBadge" class="tag tag-grade">پایه: دهم</span>
-            <span id="countBadge" class="tag tag-grade">تعداد دروس ثبت‌شده: ۰</span>
+            <span id="targetModeBadge" class="tag tag-target">حالت ثبت: فقط کلاس ۴۰۱</span>
         </div>
 
         <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 14px 0;">
@@ -534,26 +591,38 @@
             <div class="form-group">
                 <label>نام استاد / هنرآموز:</label>
                 <div class="input-with-Action">
-                    <input type="text" id="teacherName" list="savedTeachersList" placeholder="نام استاد را بنویسید یا انتخاب کنید">
+                    <input type="text" id="teacherName" list="savedTeachersList" placeholder="نام استاد را تایپ یا انتخاب کنید" oninput="saveDraftAndState()">
                     <button type="button" class="btn-mic" onclick="toggleVoice('teacherName', this)" title="تایپ صوتی">🎙️</button>
                 </div>
                 <datalist id="savedTeachersList"></datalist>
                 <label class="checkbox-wrapper">
-                    <input type="checkbox" id="rememberTeacher" checked>
-                    ذخیره نام این استاد در حافظه برای دفعات بعد
+                    <input type="checkbox" id="rememberTeacher" checked onchange="saveDraftAndState()">
+                    ذخیره نام استاد در حافظه سیستم
                 </label>
             </div>
 
             <div class="form-group">
-                <label>انتخاب درس (تفکیک‌شده بر اساس کلاس):</label>
-                <select id="lessonName"></select>
+                <label>نام درس / کارگاه (ورود دستی + حافظه):</label>
+                <div class="input-with-Action">
+                    <input type="text" id="lessonName" list="savedLessonsList" placeholder="نام درس را تایپ یا انتخاب کنید" oninput="saveDraftAndState()">
+                    <button type="button" class="btn-mic" onclick="toggleVoice('lessonName', this)" title="تایپ صوتی">🎙️</button>
+                </div>
+                <datalist id="savedLessonsList"></datalist>
+                <label class="checkbox-wrapper">
+                    <input type="checkbox" id="rememberLesson" checked onchange="saveDraftAndState()">
+                    ذخیره نام این درس در حافظه سیستم
+                </label>
             </div>
         </div>
 
-        <div class="form-group">
+        <!-- دسترسی سریع به اساتید و دروس ذخیره‌شده -->
+        <div class="saved-items-box" id="savedTeachersContainer"></div>
+        <div class="saved-items-box" id="savedLessonsContainer"></div>
+
+        <div class="form-group" style="margin-top: 14px;">
             <label>مباحث تدریس شده این هفته:</label>
             <div class="input-with-Action">
-                <textarea id="taughtContent" placeholder="دکمه میکروفون 🎙️ را بزنید و صحبت کنید یا تایپ نمایید..."></textarea>
+                <textarea id="taughtContent" placeholder="مباحث تدریس شده را بنویسید یا دکمه میکروفون 🎙️ را بزنید..." oninput="saveDraftAndState()"></textarea>
                 <button type="button" class="btn-mic" onclick="toggleVoice('taughtContent', this)" title="تایپ صوتی">🎙️</button>
             </div>
         </div>
@@ -561,7 +630,7 @@
         <div class="form-group">
             <label>تکالیف، پروژه یا آزمون هفته آینده:</label>
             <div class="input-with-Action">
-                <textarea id="homeworkContent" placeholder="تکلیف یا آزمون هفته آینده (در صورت نداشتن، خالی بگذارید)..."></textarea>
+                <textarea id="homeworkContent" placeholder="تکلیف یا آزمون هفته آینده (در صورت نداشتن، خالی بگذارید)..." oninput="saveDraftAndState()"></textarea>
                 <button type="button" class="btn-mic" onclick="toggleVoice('homeworkContent', this)" title="تایپ صوتی">🎙️</button>
             </div>
         </div>
@@ -569,45 +638,70 @@
         <div class="form-group">
             <label>نکات آموزشی تکمیلی یا وسایل کارگاه (اختیاری):</label>
             <div class="input-with-Action">
-                <input type="text" id="extraNotes" placeholder="مثال: همراه داشتن فلش مموری یا ماشین‌حساب در جلسه آینده">
+                <input type="text" id="extraNotes" placeholder="مثال: همراه داشتن فلش مموری یا ماشین‌حساب در جلسه آینده" oninput="saveDraftAndState()">
                 <button type="button" class="btn-mic" onclick="toggleVoice('extraNotes', this)" title="تایپ صوتی">🎙️</button>
             </div>
         </div>
 
-        <button type="button" class="btn-main btn-primary" onclick="addLesson()">➕ ثبت و افزودن درس به لیست این کلاس</button>
-
-        <div id="lessonsList" style="margin-top: 20px;"></div>
-
-        <div class="saved-teachers-box" id="savedTeachersContainer"></div>
+        <button type="button" class="btn-main btn-primary" id="addBtnText" onclick="addLesson()">➕ ثبت و افزودن درس برای کلاس ۴۰۱</button>
     </div>
 
-    <!-- ستون دوم: پیش‌نمایش و کپی -->
+    <!-- ستون دوم: فیلتر نمایش و خروجی مخصوص هر کلاس -->
     <div class="card" id="previewCard">
         <h2>
-            <span>📄 متن نهایی گزارش (آماده ارسال در بله)</span>
+            <span>📲 خروجی و لیست دروس به تفکیک کلاس</span>
+            <span id="countBadge" class="tag tag-count">۰ درس ثبت‌شده</span>
         </h2>
-        <p style="font-size: 0.84rem; color: var(--text-muted); margin-top: 0;">
-            متن زیر کاملاً رسمی، بدون ستاره (*) و تفکیک‌شده است:
-        </p>
+
+        <!-- فیلتر اختصاصی نمایش تک کلاس -->
+        <div class="filter-box">
+            <label>🔍 فیلتر نمایش گزارش (فقط گزارش کدام کلاس نمایش داده شود؟):</label>
+            <select id="previewFilterClass" onchange="onFilterClassChange()">
+                <optgroup label="پایه دهم">
+                    <option value="401">نمایش گزارش فقط برای کلاس ۴۰۱ (دهم شبکه)</option>
+                    <option value="402">نمایش گزارش فقط برای کلاس ۴۰۲ (دهم شبکه)</option>
+                    <option value="403">نمایش گزارش فقط برای کلاس ۴۰۳ (دهم حسابداری)</option>
+                    <option value="404">نمایش گزارش فقط برای کلاس ۴۰۴ (دهم حسابداری)</option>
+                </optgroup>
+                <optgroup label="پایه یازدهم">
+                    <option value="301">نمایش گزارش فقط برای کلاس ۳۰۱ (یازدهم شبکه)</option>
+                    <option value="302">نمایش گزارش فقط برای کلاس ۳۰۲ (یازدهم شبکه)</option>
+                    <option value="303">نمایش گزارش فقط برای کلاس ۳۰۳ (یازدهم حسابداری)</option>
+                    <option value="304">نمایش گزارش فقط برای کلاس ۳۰۴ (یازدهم حسابداری)</option>
+                </optgroup>
+                <optgroup label="پایه دوازدهم">
+                    <option value="201">نمایش گزارش فقط برای کلاس ۲۰۱ (دوازدهم شبکه)</option>
+                    <option value="202">نمایش گزارش فقط برای کلاس ۲۰۲ (دوازدهم شبکه)</option>
+                    <option value="203">نمایش گزارش فقط برای کلاس ۲۰۳ (دوازدهم حسابداری)</option>
+                    <option value="204">نمایش گزارش فقط برای کلاس ۲۰۴ (دوازدهم حسابداری)</option>
+                </optgroup>
+            </select>
+        </div>
 
         <div id="outputPreview" class="output-box"></div>
 
-        <button type="button" class="btn-main btn-success" onclick="copyToClipboard()">📋 کپی متن گزارش برای ارسال در بله</button>
-        <button type="button" class="btn-main btn-danger-outline" onclick="clearCurrentClass()">🗑️ پاک کردن دروس ثبت‌شده برای این کلاس</button>
+        <button type="button" class="btn-main btn-success" onclick="copyToClipboard()">📋 کپی گزارش همین کلاس برای ارسال در بله</button>
+
+        <h3 style="font-size: 0.95rem; color: var(--primary); margin: 20px 0 10px 0; border-bottom: 1px solid #e2e8f0; padding-bottom: 6px;">
+            🗂️ دروس ثبت‌شده برای کلاس انتخابی بالا (قابل ویرایش/حذف):
+        </h3>
+        <div id="lessonsList"></div>
+
+        <button type="button" class="btn-main btn-danger-outline" onclick="clearFilteredClass()">🗑️ پاک کردن کل دروس ثبت‌شده این کلاس</button>
     </div>
 </div>
 
 <!-- نوار دکمه شناور پایین صفحه مخصوص موبایل -->
 <div class="mobile-sticky-bar">
-    <button type="button" class="btn-scroll-preview" onclick="scrollToPreview()">👁️ مشاهده متن</button>
+    <button type="button" class="btn-scroll-preview" onclick="scrollToPreview()">👁️ مشاهده خروجی</button>
     <button type="button" class="btn-quick-copy" onclick="copyToClipboard()">📋 کپی برای بله</button>
 </div>
 
 <script>
     // ==========================================
-    // تنظیم رمز عبور ورود به سامانه (قابل تغییر)
+    // ۱. تنظیمات امنیتی و رمز ورود
     // ==========================================
-    const ACCESS_PIN = "246813579"; 
+    const ACCESS_PIN = "1405";
 
     function checkAuthOnLoad() {
         const isAuth = localStorage.getItem('honarestan_auth_ok') || sessionStorage.getItem('honarestan_auth_ok');
@@ -618,9 +712,7 @@
 
     function checkLogin() {
         const input = document.getElementById('passwordInput').value.trim();
-        // تبدیل اعداد فارسی به انگلیسی در صورت تایپ با کیبورد فارسی
         const normalizedInput = input.replace(/[۰-۹]/g, d => '۰۱۲۳۴۵۶۷۸۹'.indexOf(d));
-        
         if (normalizedInput === ACCESS_PIN) {
             if (document.getElementById('rememberLogin').checked) {
                 localStorage.setItem('honarestan_auth_ok', 'true');
@@ -641,115 +733,9 @@
         document.getElementById('loginOverlay').style.display = 'flex';
     }
 
-    // بانک دروس
-    const curriculum = {
-        network: {
-            "10": {
-                poodmani: [
-                    "نصب و راه‌اندازی سیستم‌های رایانه‌ای",
-                    "تولید محتوای الکترونیک و برنامه‌سازی",
-                    "نقشه‌کشی فنی رایانه‌ای",
-                    "کارگاه نوآوری و کارآفرینی"
-                ],
-                gheyrePoodmani: [
-                    "دانش فنی پایه - شبکه و نرم‌افزار رایانه",
-                    "الزامات محیط کار"
-                ],
-                omoomi: [
-                    "ریاضی (۱)", "فیزیک", "شیمی", "فارسی و نگارش (۱)",
-                    "عربی، زبان قرآن (۱)", "تعلیمات دینی و اخلاق (۱)",
-                    "زبان انگلیسی (۱)", "جغرافیای عمومی و استان", "تربیت بدنی (۱)"
-                ]
-            },
-            "11": {
-                poodmani: [
-                    "نصب و نگهداری تجهیزات شبکه و سخت‌افزار",
-                    "توسعه برنامه‌سازی و پایگاه داده",
-                    "پیاده‌سازی سیستم‌های اطلاعاتی و طراحی وب",
-                    "فناوری‌های نوین"
-                ],
-                gheyrePoodmani: [
-                    "کاربرد فناوری‌های نوین",
-                    "هنر و معماری ایرانی"
-                ],
-                omoomi: [
-                    "ریاضی (۲)", "فارسی و نگارش (۲)", "عربی، زبان قرآن (۲)",
-                    "تعلیمات دینی و اخلاق (۲)", "زبان انگلیسی (۲)",
-                    "تاریخ معاصر ایران", "انسان و محیط زیست", "تربیت بدنی (۲)"
-                ]
-            },
-            "12": {
-                poodmani: [
-                    "تجارت الکترونیک و امنیت شبکه",
-                    "پروژه",
-                    "کارآموزی"
-                ],
-                gheyrePoodmani: [
-                    "دانش فنی تخصصی - شبکه و نرم‌افزار رایانه"
-                ],
-                omoomi: [
-                    "ریاضی (۳)", "فارسی و نگارش (۳)", "عربی، زبان قرآن (۳)",
-                    "تعلیمات دینی و اخلاق (۳)", "زبان انگلیسی (۳)",
-                    "علوم اجتماعی", "سلامت و بهداشت", "مدیریت خانواده و سبک زندگی",
-                    "آمادگی دفاعی", "تربیت بدنی (۳)"
-                ]
-            }
-        },
-        accounting: {
-            "10": {
-                poodmani: [
-                    "حسابداری وجوه نقد و تحریر دفاتر قانونی",
-                    "حسابداری خرید و فروش",
-                    "کارگاه نوآوری و کارآفرینی"
-                ],
-                gheyrePoodmani: [
-                    "دانش فنی پایه - حسابداری",
-                    "الزامات محیط کار",
-                    "ارتباط مؤثر"
-                ],
-                omoomi: [
-                    "ریاضی (۱)", "فارسی و نگارش (۱)", "عربی، زبان قرآن (۱)",
-                    "تعلیمات دینی و اخلاق (۱)", "زبان انگلیسی (۱)",
-                    "جغرافیای عمومی و استان", "تربیت بدنی (۱)"
-                ]
-            },
-            "11": {
-                poodmani: [
-                    "حسابداری حقوق و دستمزد",
-                    "حسابداری اموال و انبار",
-                    "حسابداری دریافت‌ها و پرداخت‌ها"
-                ],
-                gheyrePoodmani: [
-                    "کاربرد فناوری‌های نوین"
-                ],
-                omoomi: [
-                    "ریاضی (۲)", "آمار کاربردی", "فارسی و نگارش (۲)",
-                    "عربی، زبان قرآن (۲)", "تعلیمات دینی و اخلاق (۲)",
-                    "زبان انگلیسی (۲)", "تاریخ معاصر ایران",
-                    "انسان و محیط زیست", "تربیت بدنی (۲)"
-                ]
-            },
-            "12": {
-                poodmani: [
-                    "حسابداری بهای تمام شده و مالیاتی",
-                    "حسابداری تهیه و تنظیم صورت‌های مالی",
-                    "پروژه",
-                    "کارآموزی"
-                ],
-                gheyrePoodmani: [
-                    "دانش فنی تخصصی - حسابداری",
-                    "مدیریت تولید"
-                ],
-                omoomi: [
-                    "ریاضی (۳)", "فارسی و نگارش (۳)", "عربی، زبان قرآن (۳)",
-                    "تعلیمات دینی و اخلاق (۳)", "زبان انگلیسی (۳)",
-                    "علوم اجتماعی", "سلامت و بهداشت", "مدیریت خانواده و سبک زندگی",
-                    "آمادگی دفاعی", "تربیت بدنی (۳)"
-                ]
-            }
-        }
-    };
-
+    // ==========================================
+    // ۲. اطلاعات پایه‌ها و کلاس‌ها
+    // ==========================================
     const classMeta = {
         "401": { name: "کلاس ۴۰۱", grade: "10", gradeTitle: "پایه دهم", major: "network", majorTitle: "شبکه و نرم‌افزار رایانه" },
         "402": { name: "کلاس ۴۰۲", grade: "10", gradeTitle: "پایه دهم", major: "network", majorTitle: "شبکه و نرم‌افزار رایانه" },
@@ -765,13 +751,17 @@
         "204": { name: "کلاس ۲۰۴", grade: "12", gradeTitle: "پایه دوازدهم", major: "accounting", majorTitle: "حسابداری" }
     };
 
-    let allReportsData = {};
-    let savedTeachers = [];
+    let allReportsData = {}; // ذخیره دروس هر کلاس به صورت مجزا
+    let savedTeachers = [];  // حافظه اساتید
+    let savedLessons = [];   // حافظه دروس وارد شده توسط کاربر
 
     function toPersianNum(str) {
         return String(str).replace(/[0-9]/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
     }
 
+    // ==========================================
+    // ۳. تقویم هوشمند شمسی و محاسبه هفته‌ها
+    // ==========================================
     function getPersianDateParts(date) {
         const parts = new Intl.DateTimeFormat('fa-IR-u-nu-latn', {
             year: 'numeric',
@@ -849,41 +839,69 @@
     function onWeekSelectChange() {
         const val = document.getElementById('weekSelect').value;
         document.getElementById('customWeekText').value = val;
-        saveCurrentState();
+        saveDraftAndState();
         updatePreview();
     }
 
+    // ==========================================
+    // ۴. ذخیره و بازیابی ۱۰۰٪ اطلاعات در حافظه (LocalStorage)
+    // ==========================================
     function loadFromStorage() {
         try {
-            const storedReports = localStorage.getItem('honarestan_reports_v2');
+            const storedReports = localStorage.getItem('honarestan_reports_v3');
             if (storedReports) allReportsData = JSON.parse(storedReports);
-            const storedTeachers = localStorage.getItem('honarestan_teachers_v2');
+
+            const storedTeachers = localStorage.getItem('honarestan_teachers_v3');
             if (storedTeachers) savedTeachers = JSON.parse(storedTeachers);
-            const lastClass = localStorage.getItem('honarestan_last_class');
-            if (lastClass && classMeta[lastClass]) {
-                document.getElementById('classSelect').value = lastClass;
-            }
-            const savedWeekText = localStorage.getItem('honarestan_week_text');
-            if (savedWeekText) {
-                document.getElementById('customWeekText').value = savedWeekText;
+
+            const storedLessons = localStorage.getItem('honarestan_lessons_v3');
+            if (storedLessons) savedLessons = JSON.parse(storedLessons);
+
+            const savedDraft = localStorage.getItem('honarestan_form_draft_v3');
+            if (savedDraft) {
+                const draft = JSON.parse(savedDraft);
+                if (draft.entryTarget) document.getElementById('entryTargetSelect').value = draft.entryTarget;
+                if (draft.filterClass) document.getElementById('previewFilterClass').value = draft.filterClass;
+                if (draft.customWeekText) document.getElementById('customWeekText').value = draft.customWeekText;
+                if (draft.teacherName) document.getElementById('teacherName').value = draft.teacherName;
+                if (draft.lessonName) document.getElementById('lessonName').value = draft.lessonName;
+                if (draft.taughtContent) document.getElementById('taughtContent').value = draft.taughtContent;
+                if (draft.homeworkContent) document.getElementById('homeworkContent').value = draft.homeworkContent;
+                if (draft.extraNotes) document.getElementById('extraNotes').value = draft.extraNotes;
             }
         } catch (e) {
-            console.error("خطا در خواندن حافظه:", e);
+            console.error("خطا در بازیابی حافظه:", e);
         }
         renderSavedTeachers();
+        renderSavedLessons();
+        updateTargetUI();
     }
 
-    function saveCurrentState() {
+    function saveDraftAndState() {
         try {
-            localStorage.setItem('honarestan_reports_v2', JSON.stringify(allReportsData));
-            localStorage.setItem('honarestan_teachers_v2', JSON.stringify(savedTeachers));
-            localStorage.setItem('honarestan_last_class', document.getElementById('classSelect').value);
-            localStorage.setItem('honarestan_week_text', document.getElementById('customWeekText').value);
+            localStorage.setItem('honarestan_reports_v3', JSON.stringify(allReportsData));
+            localStorage.setItem('honarestan_teachers_v3', JSON.stringify(savedTeachers));
+            localStorage.setItem('honarestan_lessons_v3', JSON.stringify(savedLessons));
+
+            const draft = {
+                entryTarget: document.getElementById('entryTargetSelect').value,
+                filterClass: document.getElementById('previewFilterClass').value,
+                customWeekText: document.getElementById('customWeekText').value,
+                teacherName: document.getElementById('teacherName').value,
+                lessonName: document.getElementById('lessonName').value,
+                taughtContent: document.getElementById('taughtContent').value,
+                homeworkContent: document.getElementById('homeworkContent').value,
+                extraNotes: document.getElementById('extraNotes').value
+            };
+            localStorage.setItem('honarestan_form_draft_v3', JSON.stringify(draft));
         } catch (e) {
             console.error("خطا در ذخیره حافظه:", e);
         }
     }
 
+    // ==========================================
+    // ۵. مدیریت تگ‌های اساتید و دروس ذخیره‌شده
+    // ==========================================
     function renderSavedTeachers() {
         const datalist = document.getElementById('savedTeachersList');
         const container = document.getElementById('savedTeachersContainer');
@@ -896,12 +914,12 @@
         });
 
         if (savedTeachers.length === 0) {
-            container.innerHTML = '<span>💡 هنوز نام استادی در حافظه ذخیره نشده است.</span>';
+            container.innerHTML = '<span>👨‍🏫 هنوز نام استادی ذخیره نشده است (با ثبت اولین درس، نام استاد اینجا ذخیره می‌شود).</span>';
         } else {
-            let html = '<div style="margin-bottom:6px; font-weight:600;">👨‍🏫 اساتید ذخیره‌شده (لمس نام برای درج سریع):</div>';
+            let html = '<div style="margin-bottom:4px; font-weight:600; color:#1e293b;">👨‍🏫 اساتید ذخیره‌شده (کلیک برای درج سریع):</div>';
             savedTeachers.forEach((t, idx) => {
-                html += `<span class="teacher-chip">
-                    <b style="cursor:pointer;" onclick="selectTeacherQuick('${t.replace(/'/g, "\\'")}')">${t}</b>
+                html += `<span class="chip">
+                    <b style="cursor:pointer;" onclick="selectQuick('teacherName', '${t.replace(/'/g, "\\'")}')">${t}</b>
                     <span onclick="removeSavedTeacher(${idx})" title="حذف">×</span>
                 </span>`;
             });
@@ -909,146 +927,206 @@
         }
     }
 
-    function selectTeacherQuick(name) {
-        document.getElementById('teacherName').value = name;
+    function renderSavedLessons() {
+        const datalist = document.getElementById('savedLessonsList');
+        const container = document.getElementById('savedLessonsContainer');
+        datalist.innerHTML = '';
+
+        savedLessons.forEach(l => {
+            const opt = document.createElement('option');
+            opt.value = l;
+            datalist.appendChild(opt);
+        });
+
+        if (savedLessons.length === 0) {
+            container.innerHTML = '<span>📘 هنوز نام درسی ذخیره نشده است (نام درس را بالا بنویسید تا برای دفعات بعد ذخیره شود).</span>';
+        } else {
+            let html = '<div style="margin-bottom:4px; font-weight:600; color:#1e3a8a;">📘 دروس ذخیره‌شده شما (کلیک برای درج سریع):</div>';
+            savedLessons.forEach((l, idx) => {
+                html += `<span class="chip chip-lesson">
+                    <b style="cursor:pointer;" onclick="selectQuick('lessonName', '${l.replace(/'/g, "\\'")}')">${l}</b>
+                    <span onclick="removeSavedLesson(${idx})" title="حذف">×</span>
+                </span>`;
+            });
+            container.innerHTML = html;
+        }
+    }
+
+    function selectQuick(fieldId, val) {
+        document.getElementById(fieldId).value = val;
+        saveDraftAndState();
     }
 
     function removeSavedTeacher(index) {
         savedTeachers.splice(index, 1);
-        saveCurrentState();
+        saveDraftAndState();
         renderSavedTeachers();
     }
 
-    function updateLessonDropdown() {
-        const classId = document.getElementById('classSelect').value;
-        const info = classMeta[classId];
-        const lessonSelect = document.getElementById('lessonName');
-        const majorBadge = document.getElementById('majorBadge');
-        const gradeBadge = document.getElementById('gradeBadge');
+    function removeSavedLesson(index) {
+        savedLessons.splice(index, 1);
+        saveDraftAndState();
+        renderSavedLessons();
+    }
 
-        majorBadge.innerText = `رشته: ${info.majorTitle}`;
-        majorBadge.className = info.major === 'network' ? 'tag tag-major-net' : 'tag tag-major-acc';
-        gradeBadge.innerText = info.gradeTitle;
+    // ==========================================
+    // ۶. مدیریت کلاس‌های تکی و مشترک (401-403 و...)
+    // ==========================================
+    function updateTargetUI() {
+        const targetVal = document.getElementById('entryTargetSelect').value;
+        const badge = document.getElementById('targetModeBadge');
+        const addBtn = document.getElementById('addBtnText');
 
-        lessonSelect.innerHTML = '';
-        const subjectGroups = curriculum[info.major][info.grade];
-
-        const groupLabels = {
-            poodmani: "🛠️ دروس تخصصی و کارگاهی (پودمانی)",
-            gheyrePoodmani: "📘 دروس پایه و شایستگی‌های غیرپودمانی",
-            omoomi: "📚 دروس عمومی و مشترک"
-        };
-
-        for (const [key, list] of Object.entries(subjectGroups)) {
-            const optgroup = document.createElement('optgroup');
-            optgroup.label = groupLabels[key];
-            list.forEach(subject => {
-                const opt = document.createElement('option');
-                opt.value = subject;
-                opt.textContent = subject;
-                optgroup.appendChild(opt);
-            });
-            lessonSelect.appendChild(optgroup);
+        if (targetVal.includes('-')) {
+            const parts = targetVal.split('-');
+            const c1 = toPersianNum(parts[0]);
+            const c2 = toPersianNum(parts[1]);
+            badge.className = 'tag tag-shared';
+            badge.innerText = `🔗 حالت ثبت مشترک: همزمان برای کلاس ${c1} و کلاس ${c2}`;
+            addBtn.innerText = `➕ ثبت همزمان درس برای هر دو کلاس ${c1} و ${c2}`;
+        } else {
+            const info = classMeta[targetVal];
+            badge.className = 'tag tag-target';
+            badge.innerText = `🏫 حالت ثبت تکی: ${info.name} (${info.gradeTitle} - ${info.majorTitle})`;
+            addBtn.innerText = `➕ ثبت و افزودن درس برای ${info.name}`;
         }
     }
 
-    function onClassChange() {
-        saveCurrentState();
-        updateLessonDropdown();
+    function onTargetChange() {
+        const targetVal = document.getElementById('entryTargetSelect').value;
+        updateTargetUI();
+
+        // اگر تک کلاس انتخاب شد، فیلتر نمایش سمت چپ هم اتوماتیک روی همان کلاس برود
+        // اگر مشترک انتخاب شد (مثلا 401-403)، فیلتر روی کلاس اول (401) برود
+        const firstClass = targetVal.split('-')[0];
+        document.getElementById('previewFilterClass').value = firstClass;
+
+        saveDraftAndState();
         renderLessonsList();
         updatePreview();
     }
 
-    function getCurrentClassLessons() {
-        const classId = document.getElementById('classSelect').value;
-        if (!allReportsData[classId]) {
-            allReportsData[classId] = [];
-        }
-        return allReportsData[classId];
+    function onFilterClassChange() {
+        saveDraftAndState();
+        renderLessonsList();
+        updatePreview();
     }
 
     function addLesson() {
+        const targetVal = document.getElementById('entryTargetSelect').value;
         const teacher = document.getElementById('teacherName').value.trim();
-        const lesson = document.getElementById('lessonName').value;
+        const lesson = document.getElementById('lessonName').value.trim();
         const taught = document.getElementById('taughtContent').value.trim();
         const homework = document.getElementById('homeworkContent').value.trim();
         const notes = document.getElementById('extraNotes').value.trim();
-        const remember = document.getElementById('rememberTeacher').checked;
 
-        if (!teacher || !taught) {
-            alert('لطفاً نام استاد و مباحث تدریس شده را وارد فرمایید.');
+        const remTeacher = document.getElementById('rememberTeacher').checked;
+        const remLesson = document.getElementById('rememberLesson').checked;
+
+        if (!teacher || !lesson || !taught) {
+            alert('لطفاً «نام استاد»، «نام درس» و «مباحث تدریس شده» را وارد فرمایید.');
             return;
         }
 
-        if (remember && !savedTeachers.includes(teacher)) {
+        // ذخیره در حافظه اساتید
+        if (remTeacher && !savedTeachers.includes(teacher)) {
             savedTeachers.push(teacher);
             renderSavedTeachers();
         }
 
-        const lessons = getCurrentClassLessons();
-        lessons.push({ teacher, lesson, taught, homework, notes });
+        // ذخیره در حافظه دروس
+        if (remLesson && !savedLessons.includes(lesson)) {
+            savedLessons.push(lesson);
+            renderSavedLessons();
+        }
 
-        document.getElementById('teacherName').value = '';
+        // تشخیص کلاس مقصد (تکی یا مشترک دو کلاسه)
+        const targetClasses = targetVal.split('-'); // مثلاً ["401", "403"] یا ["401"]
+        const isShared = targetClasses.length > 1;
+
+        targetClasses.forEach(classId => {
+            if (!allReportsData[classId]) {
+                allReportsData[classId] = [];
+            }
+            allReportsData[classId].push({
+                teacher,
+                lesson,
+                taught,
+                homework,
+                notes,
+                sharedTag: isShared ? `مشترک ${toPersianNum(targetClasses[0])}-${toPersianNum(targetClasses[1])}` : null
+            });
+        });
+
+        // پاک کردن فیلدهای متنی برای ورود درس بعدی
         document.getElementById('taughtContent').value = '';
         document.getElementById('homeworkContent').value = '';
         document.getElementById('extraNotes').value = '';
 
-        saveCurrentState();
+        saveDraftAndState();
         renderLessonsList();
         updatePreview();
     }
 
     function removeLesson(index) {
-        const lessons = getCurrentClassLessons();
-        lessons.splice(index, 1);
-        saveCurrentState();
-        renderLessonsList();
-        updatePreview();
-    }
-
-    function clearCurrentClass() {
-        const classId = document.getElementById('classSelect').value;
-        const info = classMeta[classId];
-        if (confirm(`آیا از پاک کردن تمام دروس ثبت‌شده برای ${info.name} اطمینان دارید؟`)) {
-            allReportsData[classId] = [];
-            saveCurrentState();
+        const filterClassId = document.getElementById('previewFilterClass').value;
+        if (allReportsData[filterClassId]) {
+            allReportsData[filterClassId].splice(index, 1);
+            saveDraftAndState();
             renderLessonsList();
             updatePreview();
         }
     }
 
+    function clearFilteredClass() {
+        const filterClassId = document.getElementById('previewFilterClass').value;
+        const info = classMeta[filterClassId];
+        if (confirm(`آیا مطمئن هستید که می‌خواهید تمام دروس ثبت‌شده برای «${info.name}» را پاک کنید؟`)) {
+            allReportsData[filterClassId] = [];
+            saveDraftAndState();
+            renderLessonsList();
+            updatePreview();
+        }
+    }
+
+    // ==========================================
+    // ۷. نمایش لیست دروس و پیش‌نمایش فیلترشده مخصوص تک‌کلاس
+    // ==========================================
     function renderLessonsList() {
+        const filterClassId = document.getElementById('previewFilterClass').value;
+        const lessons = allReportsData[filterClassId] || [];
         const container = document.getElementById('lessonsList');
-        const lessons = getCurrentClassLessons();
-        document.getElementById('countBadge').innerText = `تعداد دروس ثبت‌شده: ${toPersianNum(lessons.length)}`;
+
+        document.getElementById('countBadge').innerText = `${toPersianNum(lessons.length)} درس در کلاس ${toPersianNum(filterClassId)}`;
         container.innerHTML = '';
 
         if (lessons.length === 0) {
-            container.innerHTML = '<div style="text-align:center; color:#64748b; font-size:0.85rem; padding:14px; background:#f8fafc; border-radius:10px; border:1px dashed #cbd5e1;">هنوز درسی برای این کلاس ثبت نشده است.</div>';
+            container.innerHTML = `<div style="text-align:center; color:#64748b; font-size:0.85rem; padding:14px; background:#f8fafc; border-radius:10px; border:1px dashed #cbd5e1;">هنوز درسی برای کلاس ${toPersianNum(filterClassId)} ثبت نشده است.</div>`;
             return;
         }
 
         lessons.forEach((item, index) => {
             const div = document.createElement('div');
             div.className = 'lesson-item';
+            const sharedBadge = item.sharedTag ? `<span style="background:#fae8ff; color:#86198f; font-size:0.75rem; padding:2px 8px; border-radius:6px; margin-right:6px;">${item.sharedTag}</span>` : '';
             div.innerHTML = `
                 <div class="lesson-info">
-                    <h4>${toPersianNum(index + 1)}. ${item.lesson} — استاد: ${item.teacher}</h4>
+                    <h4>${toPersianNum(index + 1)}. ${item.lesson} — استاد: ${item.teacher} ${sharedBadge}</h4>
                     <p><strong>مباحث تدریس‌شده:</strong> ${item.taught}</p>
                     ${item.homework ? `<p><strong>تکالیف و آزمون:</strong> ${item.homework}</p>` : ''}
                     ${item.notes ? `<p><strong>نکات تکمیلی:</strong> ${item.notes}</p>` : ''}
                 </div>
-                <button type="button" class="btn-small-del" onclick="removeLesson(${index})">حذف درس</button>
+                <button type="button" class="btn-small-del" onclick="removeLesson(${index})">حذف از کلاس ${toPersianNum(filterClassId)}</button>
             `;
             container.appendChild(div);
         });
     }
 
     function updatePreview() {
-        const classId = document.getElementById('classSelect').value;
-        const info = classMeta[classId];
+        const filterClassId = document.getElementById('previewFilterClass').value;
+        const info = classMeta[filterClassId];
         const dateText = document.getElementById('customWeekText').value.trim() || 'هفته جاری';
-        const lessons = getCurrentClassLessons();
+        const lessons = allReportsData[filterClassId] || [];
 
         let text = `🏛️ گزارش هفتگی وضعیت آموزشی و درسی\n`;
         text += `🏫 ${info.name} — ${info.gradeTitle} (رشته ${info.majorTitle})\n`;
@@ -1058,7 +1136,7 @@
         text += `به استحضار می‌رساند خلاصه فعالیت‌های آموزشی، مباحث تدریس‌شده و تکالیف درسی فرزندان گرامی شما در هفته‌ای که گذشت به شرح زیر می‌باشد:\n\n`;
 
         if (lessons.length === 0) {
-            text += `(هنوز گزارش درسی برای این کلاس ثبت نگردیده است)\n\n`;
+            text += `(هنوز گزارش درسی برای ${info.name} ثبت نگردیده است)\n\n`;
         } else {
             lessons.forEach((item, index) => {
                 text += `📘 ${toPersianNum(index + 1)}. درس: ${item.lesson}\n`;
@@ -1087,17 +1165,18 @@
     }
 
     function copyToClipboard() {
+        const filterClassId = document.getElementById('previewFilterClass').value;
         const text = document.getElementById('outputPreview').innerText;
         if (navigator.clipboard && window.isSecureContext) {
             navigator.clipboard.writeText(text).then(() => {
-                alert('✓ متن گزارش رسمی کپی شد! اکنون می‌توانید در پیام‌رسان بله جای‌گذاری (Paste) کنید.');
-            }).catch(() => fallbackCopy(text));
+                alert(`✓ گزارش اختصاصی «کلاس ${toPersianNum(filterClassId)}» کپی شد! اکنون می‌توانید در گروه بله این کلاس جای‌گذاری (Paste) کنید.`);
+            }).catch(() => fallbackCopy(text, filterClassId));
         } else {
-            fallbackCopy(text);
+            fallbackCopy(text, filterClassId);
         }
     }
 
-    function fallbackCopy(text) {
+    function fallbackCopy(text, classId) {
         const textArea = document.createElement("textarea");
         textArea.value = text;
         textArea.style.position = "fixed";
@@ -1107,7 +1186,7 @@
         textArea.select();
         try {
             document.execCommand('copy');
-            alert('✓ متن گزارش رسمی کپی شد! اکنون می‌توانید در پیام‌رسان بله جای‌گذاری (Paste) کنید.');
+            alert(`✓ گزارش اختصاصی «کلاس ${toPersianNum(classId)}» کپی شد!`);
         } catch (err) {
             alert('خطا در کپی خودکار. لطفاً متن را دستی انتخاب و کپی کنید.');
         }
@@ -1115,69 +1194,100 @@
     }
 
     // ====================================================
-    // سیستم تایپ صوتی ارتقا یافته مخصوص موبایل (HTTPS)
+    // ۸. سیستم تایپ صوتی بازنویسی شده و بدون تداخل (Web Speech API)
     // ====================================================
     let recognition = null;
     let activeMicButton = null;
     let activeTargetId = null;
-    let micPermissionGranted = false;
+    let initialTextBeforeSpeech = "";
 
-    async function toggleVoice(targetId, btnElement) {
-        if (location.protocol === 'file:') {
-            alert('⚠️ توجه: مرورگرهای موبایل اجازه استفاده از میکروفون را روی فایل آفلاین (file://) نمی‌دهند. پس از قرار دادن این فایل در گیت‌هاب (آدرس https)، میکروفون بدون هیچ خطایی کار خواهد کرد.');
+    function showVoiceBanner(msg, isError = false) {
+        const banner = document.getElementById('voiceStatusBanner');
+        const textSpan = document.getElementById('voiceStatusText');
+        banner.style.display = 'flex';
+        banner.className = isError ? 'voice-error' : 'voice-active';
+        textSpan.innerText = msg;
+    }
+
+    function hideVoiceBanner() {
+        document.getElementById('voiceStatusBanner').style.display = 'none';
+    }
+
+    function stopVoiceManual() {
+        if (recognition) {
+            try { recognition.stop(); } catch (e) {}
         }
+        hideVoiceBanner();
+    }
 
+    function toggleVoice(targetId, btnElement) {
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
         if (!SpeechRecognition) {
-            alert('مرورگر شما از تایپ صوتی پشتیبانی نمی‌کند. لطفاً لینک را با مرورگر Google Chrome باز کنید.');
+            showVoiceBanner('❌ مرورگر شما از تایپ صوتی پشتیبانی نمی‌کند. حتماً از مرورگر Google Chrome یا Edge استفاده کنید.', true);
             return;
         }
 
-        // اگر در حال ضبط روی همین دکمه هستیم، متوقفش کن
+        // اگر روی همان دکمه در حال ضبط است، متوقفش کن
         if (recognition && activeMicButton === btnElement) {
             recognition.stop();
             return;
         }
 
+        // اگر روی دکمه دیگری فعال است، قبلی را ببند
         if (recognition) {
-            recognition.stop();
-        }
-
-        // دریافت مجوز سخت‌افزاری میکروفون برای جلوگیری از باگ پرمیشن در اندروید
-        if (!micPermissionGranted && navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-            try {
-                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-                stream.getTracks().forEach(track => track.stop()); // آزاد کردن خط میکروفون برای SpeechRecognition
-                micPermissionGranted = true;
-            } catch (err) {
-                alert('دسترسی به میکروفون در تنظیمات مرورگر مسدود شده است. روی علامت قفل 🔒 کنار آدرس سایت در بالای مرورگر بزنید و Microphone را روی Allow قرار دهید.');
-                return;
-            }
+            try { recognition.abort(); } catch (e) {}
         }
 
         recognition = new SpeechRecognition();
         recognition.lang = 'fa-IR';
         recognition.continuous = false;
-        recognition.interimResults = false;
+        recognition.interimResults = true; // نمایش زنده کلمات حین صحبت کردن
 
         activeMicButton = btnElement;
         activeTargetId = targetId;
-        btnElement.classList.add('recording');
+        const inputEl = document.getElementById(targetId);
+        initialTextBeforeSpeech = inputEl.value.trim();
+
+        recognition.onstart = function() {
+            btnElement.classList.add('recording');
+            showVoiceBanner('🎙️ میکروفون فعال است؛ لطفاً واضح صحبت کنید...');
+        };
 
         recognition.onresult = function(event) {
-            const transcript = event.results[0][0].transcript.trim();
-            const inputEl = document.getElementById(activeTargetId);
-            if (inputEl.value.trim().length > 0) {
-                inputEl.value += ' ' + transcript;
-            } else {
-                inputEl.value = transcript;
+            let interimTranscript = '';
+            let finalTranscript = '';
+
+            for (let i = event.resultIndex; i < event.results.length; ++i) {
+                if (event.results[i].isFinal) {
+                    finalTranscript += event.results[i][0].transcript;
+                } else {
+                    interimTranscript += event.results[i][0].transcript;
+                }
+            }
+
+            const currentSpoken = (finalTranscript || interimTranscript).trim();
+            if (currentSpoken) {
+                inputEl.value = initialTextBeforeSpeech
+                    ? initialTextBeforeSpeech + ' ' + currentSpoken
+                    : currentSpoken;
+                saveDraftAndState();
             }
         };
 
         recognition.onerror = function(event) {
-            console.error('Speech Error:', event.error);
+            console.error('Speech Recognition Error:', event.error);
             if (event.error === 'not-allowed' || event.error === 'service-not-allowed') {
-                alert('لطفاً دسترسی میکروفون را از بالای مرورگر (کنار آدرس سایت) فعال کنید.');
+                if (location.protocol === 'file:') {
+                    showVoiceBanner('⚠️ خطا: کروم اجازه میکروفون به فایل آفلاین (file://) نمی‌دهد. فایل را از لینک GitHub باز کنید.', true);
+                } else {
+                    showVoiceBanner('⚠️ دسترسی میکروفون مسدود است. از آیکون کنار نوار آدرس بالا، Microphone را روی Allow بگذارید.', true);
+                }
+            } else if (event.error === 'network') {
+                showVoiceBanner('⚠️ خطای شبکه در تبدیل صدا به متن گوگل: اینترنت یا وضعیت فیلترشکن خود را بررسی کنید.', true);
+            } else if (event.error === 'no-speech') {
+                showVoiceBanner('ℹ️ صدایی دریافت نشد. دوباره روی میکروفون بزنید و صحبت کنید.', true);
+            } else {
+                showVoiceBanner('⚠️ خطای میکروفون: ' + event.error, true);
             }
         };
 
@@ -1185,18 +1295,27 @@
             if (activeMicButton) {
                 activeMicButton.classList.remove('recording');
             }
+            // اگر بنر خطا نیست، بنر ضبط را ببند
+            const banner = document.getElementById('voiceStatusBanner');
+            if (banner.className === 'voice-active') {
+                hideVoiceBanner();
+            }
             activeMicButton = null;
             activeTargetId = null;
             recognition = null;
         };
 
-        recognition.start();
+        try {
+            recognition.start();
+        } catch (err) {
+            showVoiceBanner('⚠️ خطا در شروع میکروفون. لطفاً صفحه را رفرش کنید.', true);
+        }
     }
 
+    // اجرای اولیه برنامه
     checkAuthOnLoad();
     initSmartWeeks();
     loadFromStorage();
-    updateLessonDropdown();
     renderLessonsList();
     updatePreview();
 </script>
